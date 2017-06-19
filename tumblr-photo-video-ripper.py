@@ -181,7 +181,10 @@ class CrawlerScheduler(object):
 
     def _download_media(self, site, medium_type, start):
         current_folder = os.getcwd()
-        target_folder = os.path.join(current_folder, site)
+        if medium_type == "photo":
+            target_folder = os.path.join(os.getenv("HOME"), "Images", site)
+        else:
+            target_folder = os.path.join(current_folder, site)
         if not os.path.isdir(target_folder):
             os.mkdir(target_folder)
 
